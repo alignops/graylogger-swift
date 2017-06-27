@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'graylogger_Example' do
+  pod 'graylogger', :path => '../'
+
+  target 'graylogger_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
