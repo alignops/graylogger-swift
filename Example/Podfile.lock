@@ -1,0 +1,69 @@
+PODS:
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - Alamofire (4.5.0)
+  - DBC (1.0.2):
+    - DBC/Bridged (= 1.0.2)
+    - DBC/Objc (= 1.0.2)
+    - DBC/Swift (= 1.0.2)
+  - DBC/Bridged (1.0.2):
+    - DBC/Objc
+    - DBC/Swift
+  - DBC/Objc (1.0.2)
+  - DBC/Swift (1.0.2)
+  - graylogger (0.1.0):
+    - AFNetworking/NSURLSession
+    - Alamofire
+    - graylogger/AFNetworking (= 0.1.0)
+    - graylogger/Alamofire (= 0.1.0)
+    - graylogger/Core (= 0.1.0)
+    - graylogger/CoreDataCache (= 0.1.0)
+    - graylogger/ReachabilitySwift (= 0.1.0)
+  - graylogger/AFNetworking (0.1.0):
+    - AFNetworking/NSURLSession
+    - Alamofire
+    - graylogger/Core
+  - graylogger/Alamofire (0.1.0):
+    - AFNetworking/NSURLSession
+    - Alamofire
+    - graylogger/Core
+  - graylogger/Core (0.1.0):
+    - AFNetworking/NSURLSession
+    - Alamofire
+    - DBC
+    - SwiftyJSON
+  - graylogger/CoreDataCache (0.1.0):
+    - AFNetworking/NSURLSession
+    - Alamofire
+    - graylogger/Core
+  - graylogger/ReachabilitySwift (0.1.0):
+    - AFNetworking/NSURLSession
+    - Alamofire
+    - graylogger/Core
+    - ReachabilitySwift
+  - ReachabilitySwift (3)
+  - SwiftyJSON (3.1.4)
+
+DEPENDENCIES:
+  - graylogger (from `../`)
+
+EXTERNAL SOURCES:
+  graylogger:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  DBC: 710451ade7f92e86b626ba05190d09badd1b6a8d
+  graylogger: 9fc33849475082ee0f6b6d725fef45b1af25ef7f
+  ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+
+PODFILE CHECKSUM: 0ee5a1f0b2a024234175e8e516a9c57cc49b4f92
+
+COCOAPODS: 1.2.0

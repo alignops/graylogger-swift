@@ -29,7 +29,7 @@
 
 /* Begin PBXFileReference section */
 		07E333D67551CCE5D6FA520E /* Pods_graylogger_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_graylogger_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		11D35002C400ABE24165D4C3 /* graylogger.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = graylogger.podspec; path = ../graylogger.podspec; sourceTree = "<group>"; };
+		11D35002C400ABE24165D4C3 /* graylogger.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = graylogger.podspec; path = ../graylogger.podspec; sourceTree = "<group>"; };
 		4F95D53C1A2F2C519AECD60F /* Pods-graylogger_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-graylogger_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-graylogger_Example/Pods-graylogger_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* graylogger_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = graylogger_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -42,10 +42,10 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		6A023D0C9D4114EBE4A69B6C /* Pods-graylogger_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-graylogger_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-graylogger_Tests/Pods-graylogger_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		8379598B8959C4654AC90342 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		8379598B8959C4654AC90342 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		8956A157D50BB35FCD28D28B /* Pods-graylogger_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-graylogger_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-graylogger_Tests/Pods-graylogger_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		AB72BA8D050423A34E65DC44 /* Pods_graylogger_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_graylogger_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C10962D9534E4C460AA95684 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		C10962D9534E4C460AA95684 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F34D0D6A7A9FB67E8DE2181F /* Pods-graylogger_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-graylogger_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-graylogger_Example/Pods-graylogger_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -443,7 +443,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -483,7 +483,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
