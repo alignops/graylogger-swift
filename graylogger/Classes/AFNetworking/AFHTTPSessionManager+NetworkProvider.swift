@@ -9,7 +9,7 @@ import Foundation
 import AFNetworking
 import DBC
 
-extension AFHTTPSessionManager: NetworkProvider, ReachabilityProvider {
+extension AFHTTPSessionManager: NetworkProvider {
 	public func submitLog(endpoint: GraylogEndpoint, payload jsonData: Data, completion: ((Any?, Error?) -> Void)?) {
 		
 		if case GraylogEndpoint.udp(_, _, _) = endpoint {
@@ -49,7 +49,10 @@ extension AFHTTPSessionManager: NetworkProvider, ReachabilityProvider {
 			}
 		}
 	}
-	
+}
+
+#if !os(watchOS)
+extension AFHTTPSessionManager: ReachabilityProvider {
 	public func networkIsReachable() -> Bool {
 		// Must call AFNetworkReachabilityManager.shared().startMonitoring() to start the monitoring.
 		if (AFNetworkReachabilityManager.shared().networkReachabilityStatus == .unknown) {
@@ -60,4 +63,4 @@ extension AFHTTPSessionManager: NetworkProvider, ReachabilityProvider {
 		return AFNetworkReachabilityManager.shared().isReachable
 	}
 }
-
+#endif

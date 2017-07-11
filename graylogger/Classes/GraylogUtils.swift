@@ -78,10 +78,11 @@ extension Bundle {
 	}
 }
 
+#if !os(OSX)
 public extension UIDevice {
 	
 	public var idStringForVendor: String? {
 		return self.identifierForVendor?.uuidString
 	}
 }
-
+#endif

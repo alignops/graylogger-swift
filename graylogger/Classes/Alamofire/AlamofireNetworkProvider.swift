@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import DBC
 
-public class AlamofireNetworkProvider: NetworkProvider, ReachabilityProvider {
+public class AlamofireNetworkProvider: NetworkProvider {
 	let reachabilityManager = Alamofire.NetworkReachabilityManager()
 	
 	public init() {
@@ -52,7 +52,10 @@ public class AlamofireNetworkProvider: NetworkProvider, ReachabilityProvider {
 			}
 		}
 	}
-	
+}
+
+extension AlamofireNetworkProvider: ReachabilityProvider {
+
 	public func networkIsReachable() -> Bool {
 		// Must call reachabilityManager?.startListenings() to start the monitoring.
 		if (reachabilityManager?.networkReachabilityStatus == .unknown) {
