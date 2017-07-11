@@ -51,6 +51,7 @@ PODS:
 
 DEPENDENCIES:
   - graylogger (from `../`)
+  - SwiftyJSON
 
 EXTERNAL SOURCES:
   graylogger:
@@ -60,10 +61,10 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   DBC: 710451ade7f92e86b626ba05190d09badd1b6a8d
-  graylogger: 9fc33849475082ee0f6b6d725fef45b1af25ef7f
+  graylogger: 3815d0cffd017137a36e8b0692de0c953b4bbd68
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 0ee5a1f0b2a024234175e8e516a9c57cc49b4f92
+PODFILE CHECKSUM: 10560023dc4eaf6c6280a5c9c886a97ed563ed9f
 
 COCOAPODS: 1.2.0

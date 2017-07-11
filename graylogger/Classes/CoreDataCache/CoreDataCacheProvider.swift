@@ -10,17 +10,24 @@ import CoreData
 import DBC
 import SwiftyJSON
 
-public class CoreDataCacheProvider: NSObject, CacheProvider {
+public class CoreDataCacheProvider:  CacheProvider {
+	
+	let dbBundle:Bundle
+	
+	init(in bundle:Bundle = Bundle.main) {
+		self.dbBundle = bundle
+	}
+	
 	private lazy var cacheDirectory: URL = {
-		return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!.appendingPathComponent(Bundle.main.bundleId)
+		return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!.appendingPathComponent(self.dbBundle.bundleId)
 	}()
 	
-	private lazy var managedObjectModel: NSManagedObjectModel = {
-		var bundle = Bundle(for: type(of: self))
+	public lazy var managedObjectModel: NSManagedObjectModel = {
+		let bundle = Bundle(for: CoreDataCacheProvider.self)
 		return NSManagedObjectModel.mergedModel(from: [bundle])!
 	}()
 	
-	private lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
+	public lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
 		let psc =  NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
 		
 		var storeURL: URL? = self.cacheDirectory.appendingPathComponent("CoreDataCacheProvider.sqlite")
@@ -34,7 +41,7 @@ public class CoreDataCacheProvider: NSObject, CacheProvider {
 		return psc
 	}()
 	
-	fileprivate lazy var managedObjectContext: NSManagedObjectContext = {
+	public lazy var managedObjectContext: NSManagedObjectContext = {
 		let moc = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
 		moc.persistentStoreCoordinator = self.persistentStoreCoordinator
 		

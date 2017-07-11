@@ -9,7 +9,7 @@ import Foundation
 import DBC
 import SwiftyJSON
 
-/// Provides access to a specific [graylog message input](https://www.graylog.org)
+/// Provides access to a configurable [graylog message input](https://www.graylog.org)
 ///
 /// - http: An http endpoint to a graylog server.
 /// - https: An https endpoint to a graylog server.
