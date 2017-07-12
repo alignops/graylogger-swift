@@ -9,6 +9,10 @@ import Foundation
 import DBC
 import SwiftyJSON
 
+#if !os(OSX)
+import UIKit
+#endif
+
 /// Provides access to a configurable [graylog message input](https://www.graylog.org)
 ///
 /// - http: An http endpoint to a graylog server.
