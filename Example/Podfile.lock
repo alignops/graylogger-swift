@@ -19,11 +19,7 @@ PODS:
   - graylogger (0.1.0):
     - AFNetworking/NSURLSession
     - Alamofire
-    - graylogger/AFNetworking (= 0.1.0)
-    - graylogger/Alamofire (= 0.1.0)
     - graylogger/Core (= 0.1.0)
-    - graylogger/CoreDataCache (= 0.1.0)
-    - graylogger/ReachabilitySwift (= 0.1.0)
   - graylogger/AFNetworking (0.1.0):
     - AFNetworking/NSURLSession
     - Alamofire
@@ -51,6 +47,10 @@ PODS:
 
 DEPENDENCIES:
   - graylogger (from `../`)
+  - graylogger/AFNetworking (from `../`)
+  - graylogger/Alamofire (from `../`)
+  - graylogger/CoreDataCache (from `../`)
+  - graylogger/ReachabilitySwift (from `../`)
   - SwiftyJSON
 
 EXTERNAL SOURCES:
@@ -61,10 +61,10 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   DBC: 710451ade7f92e86b626ba05190d09badd1b6a8d
-  graylogger: 3815d0cffd017137a36e8b0692de0c953b4bbd68
+  graylogger: 43e996d3b89515ac40e6595ad9bcc8694588de95
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 10560023dc4eaf6c6280a5c9c886a97ed563ed9f
+PODFILE CHECKSUM: 46c4cb61c38812344f3d4cc31d87021ef21fe4d7
 
 COCOAPODS: 1.2.0
