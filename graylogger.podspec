@@ -29,6 +29,9 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'ReachabilitySwift' do |ss|
+	ss.ios.deployment_target = '9.0'
+	ss.osx.deployment_target = '10.10'
+	ss.tvos.deployment_target = '9.2'
     ss.source_files = 'graylogger/Classes/ReachabilitySwift/*.swift'
 
     ss.dependency 'graylogger/Core'
