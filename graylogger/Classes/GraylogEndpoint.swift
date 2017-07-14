@@ -9,7 +9,7 @@ import Foundation
 import DBC
 import SwiftyJSON
 
-#if !os(OSX)
+#if os(iOS)
 import UIKit
 #endif
 
@@ -210,7 +210,7 @@ fileprivate extension GraylogEndpoint {
 		appDetails["manufacturer"] = "Apple"
 		appDetails["language"] = NSLocale.preferredLanguages[0]
 		
-		#if !os(OSX)
+		#if os(iOS)
 			appDetails["os_version"] = UIDevice.current.systemVersion
 			appDetails["model"] = UIDevice.current.model
 			appDetails["platform"] = UIDevice.current.systemName

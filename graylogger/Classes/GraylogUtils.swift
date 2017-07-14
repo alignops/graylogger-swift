@@ -1,4 +1,10 @@
 import DBC
+import Foundation
+
+#if os(iOS)
+import UIKit
+#endif
+
 
 class GraylogUtils {
 	class func hostname() -> String
@@ -78,7 +84,7 @@ extension Bundle {
 	}
 }
 
-#if !os(OSX)
+#if os(iOS)
 public extension UIDevice {
 	
 	public var idStringForVendor: String? {

@@ -16,7 +16,12 @@ Pod::Spec.new do |s|
   s.subspec 'Core' do |ss|
     ss.source_files = 'graylogger/Classes/*.swift'
   
-    ss.dependency 'DBC'
+	ss.frameworks = 'Foundation'
+	ss.ios.frameworks = 'UIKit'
+	ss.watchos.frameworks = 'UIKit'
+	ss.tvos.frameworks = 'UIKit'
+
+	ss.dependency 'DBC'
     ss.dependency 'SwiftyJSON'
   end
 
@@ -24,7 +29,7 @@ Pod::Spec.new do |s|
     ss.source_files = 'graylogger/Classes/CoreDataCache/*.swift'
     ss.resources = 'graylogger/Classes/CoreDataCache/*.{xcdatamodeld,xcdatamodel}'
 
-	ss.ios.frameworks = 'CoreData'
+	ss.frameworks = 'CoreData'
 	ss.dependency 'graylogger/Core'
   end
 

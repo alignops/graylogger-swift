@@ -10,10 +10,14 @@ import Alamofire
 import DBC
 
 public class AlamofireNetworkProvider: NetworkProvider {
+	#if !os(watchOS)
 	let reachabilityManager = Alamofire.NetworkReachabilityManager()
+	#endif
 	
 	public init() {
+		#if !os(watchOS)
 		reachabilityManager?.startListening()
+		#endif
 	}
 	
 	public func submitLog(endpoint: GraylogEndpoint, payload jsonData: Data, completion: ((Any?, Error?) -> Void)?) {
@@ -54,6 +58,7 @@ public class AlamofireNetworkProvider: NetworkProvider {
 	}
 }
 
+#if !os(watchOS)
 extension AlamofireNetworkProvider: ReachabilityProvider {
 
 	public func networkIsReachable() -> Bool {
@@ -66,4 +71,5 @@ extension AlamofireNetworkProvider: ReachabilityProvider {
 		return reachabilityManager?.isReachable ?? true
 	}
 }
+#endif
 
