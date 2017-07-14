@@ -9,6 +9,7 @@ target 'graylogger_Example' do
 	pod 'graylogger/ReachabilitySwift', :path => '../'
 	pod 'graylogger/AFNetworking', :path => '../'
 	pod 'graylogger/Alamofire', :path => '../'
+	pod 'graylogger/AnalyticsKit', :path => '../'
 
   target 'graylogger_Tests' do
     inherit! :search_paths

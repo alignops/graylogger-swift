@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'graylogger'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'A short description of graylogger.'
   s.homepage         = 'https://github.com/busybusy/graylogger-swift.git'
   s.license		     = 'Copyright 2016 Busy, LLC. All rights reserved.'
@@ -47,15 +47,23 @@ Pod::Spec.new do |s|
 	ss.source_files = 'graylogger/Classes/AFNetworking/*.swift'
 
 	ss.dependency 'graylogger/Core'
-	s.dependency 'AFNetworking/NSURLSession'
+	ss.dependency 'AFNetworking/NSURLSession'
   end
 
   s.subspec 'Alamofire' do |ss|
 	ss.source_files = 'graylogger/Classes/Alamofire/*.swift'
 
 	ss.dependency 'graylogger/Core'
-	s.dependency 'Alamofire'
+	ss.dependency 'Alamofire'
   end
 
+  s.subspec 'AnalyticsKit' do |ss|
+	ss.ios.deployment_target = '9.0'
+
+	ss.source_files = 'graylogger/Classes/AnalyticsKit/*.swift'
+
+    ss.dependency 'graylogger/Core'
+    ss.dependency 'AnalyticsKit/Core'
+  end
 end
 
