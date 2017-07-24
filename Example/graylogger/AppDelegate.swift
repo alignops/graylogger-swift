@@ -19,13 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let endpoint = GraylogEndpoint.http(host: "107.21.12.75", port: 12301)
 		let log = GraylogInput(endpoint: endpoint)
 		
-//		GraylogInput.network = CachedNetworkProvider(cacheProvider: MemoryCacheProvider())
-//		GraylogInput.network = CachedNetworkProvider(cacheProvider: CoreDataCacheProvider())
-//		GraylogInput.network = AlamofireNetworkProvider()
-//		GraylogInput.network = CachedNetworkProvider(cacheProvider: CoreDataCacheProvider(), networkProvider: AlamofireNetworkProvider())
-//		GraylogInput.network = AFHTTPSessionManager()
-//		GraylogInput.network = CachedNetworkProvider(cacheProvider: CoreDataCacheProvider(), networkProvider: AFHTTPSessionManager())
-//		GraylogInput.reachability = ReachabilitySwiftProvider()
+//		endpoint.network = CachedNetworkProvider(cacheProvider: MemoryCacheProvider())
+//		endpoint.network = CachedNetworkProvider(cacheProvider: CoreDataCacheProvider())
+//		endpoint.network = AlamofireNetworkProvider()
+//		endpoint.network = CachedNetworkProvider(cacheProvider: CoreDataCacheProvider(), networkProvider: AlamofireNetworkProvider())
+//		endpoint.network = AFHTTPSessionManager()
+//		endpoint.network = CachedNetworkProvider(cacheProvider: CoreDataCacheProvider(), networkProvider: AFHTTPSessionManager())
+//		endpoint.reachability = ReachabilitySwiftProvider()
 		
 		return log
 	}()
