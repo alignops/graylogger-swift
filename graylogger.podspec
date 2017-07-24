@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'graylogger'
-  s.version          = '0.2.0'
+  s.version          = '0.3.0'
   s.summary          = 'A short description of graylogger.'
   s.homepage         = 'https://github.com/busybusy/graylogger-swift.git'
   s.license		     = 'Copyright 2016 Busy, LLC. All rights reserved.'
