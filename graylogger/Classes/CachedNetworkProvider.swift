@@ -73,10 +73,9 @@ public class CachedNetworkProvider: NetworkProvider {
 	}
 }
 
-
 fileprivate extension CachedNetworkProvider {
 	func flushCache() {
-		if self.cacheProvider.hasCache && networkIsReachable() {
+		if self.cacheProvider.hasCache {
 			self.cacheProvider.flushCache { [weak self] (endpoint, payload, completion) in
 				self?.passThrough.submitLog(endpoint: endpoint, payload: payload) { (response, error) in
 					completion(error == nil)

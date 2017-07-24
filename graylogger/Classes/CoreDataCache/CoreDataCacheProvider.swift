@@ -11,10 +11,25 @@ import DBC
 import SwiftyJSON
 
 public class CoreDataCacheProvider:  CacheProvider {
+	public enum StoreType {
+		case sqlite
+		case inMemory
+		
+		var pscType: String
+		{
+			switch self
+			{
+			case .sqlite: return NSSQLiteStoreType
+			case .inMemory: return NSInMemoryStoreType
+			}
+		}
+	}
 	
 	let dbBundle:Bundle
-	
-	init(in bundle:Bundle = Bundle.main) {
+	let storeType:StoreType
+
+	public init(storeType:StoreType = .sqlite, bundle:Bundle = Bundle.main) {
+		self.storeType = storeType
 		self.dbBundle = bundle
 	}
 	
@@ -22,17 +37,17 @@ public class CoreDataCacheProvider:  CacheProvider {
 		return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!.appendingPathComponent(self.dbBundle.bundleId)
 	}()
 	
-	public lazy var managedObjectModel: NSManagedObjectModel = {
+	private lazy var managedObjectModel: NSManagedObjectModel = {
 		let bundle = Bundle(for: CoreDataCacheProvider.self)
 		return NSManagedObjectModel.mergedModel(from: [bundle])!
 	}()
 	
-	public lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
+	private lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
 		let psc =  NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
 		
 		var storeURL: URL? = self.cacheDirectory.appendingPathComponent("CoreDataCacheProvider.sqlite")
 		do {
-			_ = try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
+			_ = try psc.addPersistentStore(ofType: self.storeType.pscType, configurationName: nil, at: storeURL, options: nil)
 		}
 		catch {
 			requireFailure("[CoreDataCacheProvider] Error \(error)")
@@ -59,7 +74,6 @@ public class CoreDataCacheProvider:  CacheProvider {
 			cachedObject.type = endpoint.logType.rawValue
 			cachedObject.host = endpoint.host
 			cachedObject.port = endpoint.port as NSNumber
-			cachedObject.level = NSNumber(value: endpoint.maxLogLevel.rawValue)
 			cachedObject.payload = jsonData as NSData
 			
 			do {
@@ -92,14 +106,12 @@ public class CoreDataCacheProvider:  CacheProvider {
 					let logType = GraylogType(rawValue: type),
 					let host = cache.host,
 					let port = cache.port,
-					let level = cache.level,
-					let logLevel =  GraylogLevel(rawValue: level.intValue),
 					let payload = cache.payload as Data? else {
 						requireFailure("Could not load log values for cached object")
 						return
 					}
 				
-				let endpoint = GraylogEndpoint(logType: logType, host: host, port: port.intValue, loglevel: logLevel)
+				let endpoint = GraylogEndpoint(logType: logType, host: host, port: port.intValue)
 				
 				submitCacheItem(endpoint, payload) { (_ didSubmit:Bool) -> Void in
 					// Remove the item if it was submitted.
