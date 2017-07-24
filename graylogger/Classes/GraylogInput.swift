@@ -17,27 +17,30 @@ import UIKit
 ///
 /// Example usage:
 ///```
-/// let accessPoint = GraylogInput.AccessPoint.http(host: "107.21.12.75", port: 12301)
-/// var bbTestLog  = GraylogInput(accessPoint:accessPoint)
+/// let endpoint = GraylogEndpoint.http(host: "107.21.12.75", port: 12301)
+/// var bbTestLog  = GraylogInput(endpoint:endpoint)
 ///
 /// var bbTestLog2:GraylogInput = {
-/// 	let accessPoint = GraylogInput.AccessPoint.http(host: "107.21.12.75", port: 12302)
-///		let log = GraylogInput(accessPoint:accessPoint)
-///		log.network = CachedNetworkProvider(cacheProvider: CoreDataCacheProvider())
+///	    let endpoint = GraylogEndpoint.http(host: "107.21.12.75", port: 12302)
+///	    let log = GraylogInput(endpoint:endpoint)
+///	    endpoint.network = CachedNetworkProvider(cacheProvider: CoreDataCacheProvider())
+///
 ///	    return log
 ///	}()
 ///
 /// var bbTestLog3:GraylogInput = {
-/// 	let accessPoint = GraylogInput.AccessPoint.http(host: "107.21.12.75", port: 12303)
-///		let log = GraylogInput(accessPoint:accessPoint)
-///		log.network = AlamofireNetworkProvider()
+///	    let endpoint = GraylogEndpoint.http(host: "107.21.12.75", port: 12303)
+///	    let log = GraylogInput(endpoint:endpoint)
+///	    endpoint.network = AlamofireNetworkProvider()
+///
 ///	    return log
 ///	}()
 ///
 /// var bbTestLog4:GraylogInput = {
-/// 	let accessPoint = GraylogInput.AccessPoint.http(host: "107.21.12.75", port: 12304)
-///		let log = GraylogInput(accessPoint:accessPoint, maxLogLevel:.debug, includeStackTraceInfo:true)
-///		log.reachability = ReachabilitySwiftProvider()
+///	    let endpoint = GraylogEndpoint.http(host: "107.21.12.75", port: 12304)
+///	    let log = GraylogInput(endpoint:endpoint, maxLogLevel:.debug, includeStackTraceInfo:true)
+///	    endpoint.reachability = ReachabilitySwiftProvider()
+///
 ///	    return log
 ///	}()
 /// ....
@@ -47,76 +50,25 @@ import UIKit
 ///```
 public class GraylogInput {
 
-	/// - http: An http access-point to a graylog server.
-	/// - https: An https access-point to a graylog server.
-	/// - udp: : A udp access-point to a graylog server. The default network provider does not support udp. If you require upd support you must provide your own
-	///        udp NetworkProvider. See `network: NetworkProvider` below
-	public enum AccessPoint: Hashable {
-		/// An http access-point to a graylog server.
-		///
-		/// - Associated Values:
-		///   - host: http url to the target graylog server.
-		///   - port: port number to target a specific graylog input.
-		case http(host:String, port: Int)
-		
-		/// An https access-point to a graylog server.
-		///
-		/// - Associated Values:
-		///   - host: https url to the target graylog server.
-		///   - port: port number to target a specific graylog input.
-		case https(host:String, port: Int)
-		
-		/// An udp access-point to a graylog server.  The default network provider does not support udp. If you require upd support you must provide your own
-		///        udp NetworkProvider. See `network: NetworkProvider` below
-		///
-		/// - Associated Values:
-		///   - host: udp url to the target graylog server.
-		///   - port: port number to target a specific graylog input.
-		case udp(host:String, port: Int)
-
-		
-		/// A static property providing access to the associated `NetworkProvider`. Defaults to the shared URLSession.
-		/// May be set by the client to a custom `NetworkProvider`. See the AlamoFire and AFNetworking providers included with this framework.
-		///
-		/// See Also: `CachedNetworkProvider.swift` for details of a builtin log caching mechanism provided with the framwework.
-		public static var network: NetworkProvider = { return URLSession.shared}() {
-			didSet {
-				if self.reachability == nil {
-					if let reachability = network as? ReachabilityProvider {
-						self.reachability = reachability
-					}
-					else if let cached = network as? CachedNetworkProvider, let reachability = cached.passThrough as? ReachabilityProvider {
-						self.reachability = reachability
-					}
-				}
-			}
-		}
-		
-		/// An optional static property providing access to the associated `ReachabilityProvider`. Defaults to nil.
-		/// Note that if the associated `NetworkProvider` also implements `ReachabilityProvider` this property will automatically be
-		/// assinged through the `network` property above. See the ReachabilitySwift provider included with this framework.
-		public static var reachability: ReachabilityProvider?
-	}
-
 	/// The access-point definition (url and port) for the graylog input
-	let accessPoint: AccessPoint
+	public let endpoint: GraylogEndpoint
 
 	/// The maximum GraylogLevel that this endpoint will log.  All logs with levels > then this maximum will be ignored. Defaults to `.informational`
-	let maxLogLevel: GraylogLevel
+	public let maxLogLevel: GraylogLevel
 
 	/// If `true` file paths and line numbers of the calling functions will be automatically included in the log. Defaults to `false`
-	let includeFileLineInfo: Bool
+	public let includeFileLineInfo: Bool
 	
 	/// If `true` file a call-stack-trace will be automatically included in the log. Defaults to `false`
-	let includeStackTraceInfo: Bool
+	public let includeStackTraceInfo: Bool
 
 	/// If `true` file a app and device details will be automatically included in the log. Defaults to `true`
 	/// - The following will be provided: `App Name`, `App Id`, `App Version`, `Device Peferred Language`,
 	/// `OS Version`, `Device Model`, `Device Platform`, `Device Name`, and the `vender device id``
-	let includeAppDetails:Bool
+	public let includeAppDetails:Bool
 	
-	public init(accessPoint: AccessPoint, maxLogLevel: GraylogLevel = .informational, includeFileLineInfo: Bool = false, includeStackTraceInfo: Bool = false, includeAppDetails:Bool = true) {
-		self.accessPoint = accessPoint
+	public init(endpoint: GraylogEndpoint, maxLogLevel: GraylogLevel = .informational, includeFileLineInfo: Bool = false, includeStackTraceInfo: Bool = false, includeAppDetails:Bool = true) {
+		self.endpoint = endpoint
 		self.maxLogLevel = maxLogLevel
 		self.includeFileLineInfo = includeFileLineInfo
 		self.includeStackTraceInfo = includeStackTraceInfo
@@ -157,7 +109,7 @@ public class GraylogInput {
 		
 		check(json != nil)
 		
-		network.submitLog(accessPoint: self.accessPoint, payload: json!) { (response,error) in
+		self.endpoint.submitLog(payload: json!) { (response,error) in
 			check(error != nil, "Failed to submit error log : \(error!)")
 
 			// If we get a error not handled by the cache mechanism then attemt to log the specifics of the error in place of the log
@@ -169,44 +121,6 @@ public class GraylogInput {
 					self.submitErrorReport(host: host, error: error, timeStamp: timeStamp, file: file, line: line)
 				}
 			}
-		}
-	}
-}
-
-public extension GraylogInput.AccessPoint {
-	/// The `host` associated value of the access-point.
-	var host: String {
-		switch self {
-		case .http(let host, _):
-			return host
-		case .https(let host, _):
-			return host
-		case .udp(let host, _):
-			return host
-		}
-	}
-	
-	/// The `port` associated value of the access-point.
-	var port: Int {
-		switch self {
-		case .http(_, let port):
-			return port
-		case .https(_, let port):
-			return port
-		case .udp(_, let port):
-			return port
-		}
-	}
-
-	/// Supplies a properly formatted gelf url to the graylog input.
-	var url: URL {
-		switch self {
-		case .http(let host, let port):
-			return URL(string: String(format: "http://%@:%d/gelf", host, port))!
-		case .https(let host, let port):
-			return URL(string: String(format: "https://%@:%d/gelf", host, port))!
-		case .udp(let host, let port):
-			return URL(string: String(format: "udp://%@:%d/gelf", host, port))!
 		}
 	}
 }
@@ -270,58 +184,58 @@ fileprivate extension GraylogInput {
 			}
 		}
 		
-		// Additional data
-		do {
-			for key: String in moreData.keys {
-				require(key != "id", "_id is a reserved graylog attribute: \(message), \(moreData)")
-				require(key != "_id", "_id is a reserved graylog attribute: \(message), \(moreData)")
+		// Proccess all additional/suplamental data (make it graylog acceptable)
+		for key: String in moreData.keys {
+			require(key != "id", "_id is a reserved graylog attribute: \(message), \(moreData)")
+			require(key != "_id", "_id is a reserved graylog attribute: \(message), \(moreData)")
+			
+			if let data = moreData[key] {
+				var value:Any = data
 				
-				if let data = moreData[key] {
-					var value:Any = data
+				// Try to catch a few specific data types that we can pre-process for graylog (and the JSON serializer)
+				// If we can not serialize child maps and arraays then provide an error message instead of failing the
+				// log attempt.
+				if let date = value as? Date {
+					value = date.formatDateAndTime()
+				}
+				else if let map = value as? [String:Any] {
+					let paramsJSON = JSON(map)
 					
-					// Try to catch a few specific data types that we can pre-process for graylog (and the JSON serializer)
-					// If we can not serialize child maps and arraays then provide an error message instead of failing the
-					// log attempt.
-					if let date = value as? Date {
-						value = date.formatDateAndTime()
-					}
-					else if let map = value as? [String:Any] {
-						let paramsJSON = JSON(map)
-						
-						if let jsonStr = paramsJSON.rawString() {
-							value = jsonStr
-						}
-						else {
-							checkFailure("Unable to serialize dictionary to JSON : \(key):\(value)")
-							value = "Unable to serialize dictionary to JSON : \(key):\(value)"
-						}
-					}
-					else if let array = value as? [Any] {
-						let paramsJSON = JSON(array)
-						
-						if let jsonStr = paramsJSON.rawString() {
-							value = jsonStr
-						}
-						else {
-							checkFailure("Unable to serialize array to JSON  : \(key):\(value)")
-							value = "Unable to serialize array to JSON  : \(key):\(value)"
-						}
-					}
-					
-					// No whitespace allowed in the keys...
-					let useKey = key.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: " ", with: "_")
-					
-					if let str = value as? String {
-						value = str.truncated(toLength: 32000)
-					}
-					
-					// Non-standard keys must be proceeded with an "_"
-					if useKey.hasPrefix("_") || (useKey == "full_message") {
-						dict[useKey] = value
+					if let jsonStr = paramsJSON.rawString() {
+						value = jsonStr
 					}
 					else {
-						dict["_" + (useKey)] = value
+						checkFailure("Unable to serialize dictionary to JSON : \(key):\(value)")
+						value = "Unable to serialize dictionary to JSON : \(key):\(value)"
 					}
+				}
+				else if let array = value as? [Any] {
+					let paramsJSON = JSON(array)
+					
+					if let jsonStr = paramsJSON.rawString() {
+						value = jsonStr
+					}
+					else {
+						checkFailure("Unable to serialize array to JSON  : \(key):\(value)")
+						value = "Unable to serialize array to JSON  : \(key):\(value)"
+					}
+				}
+				
+				// No whitespace allowed in the keys...
+				let useKey = key.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: " ", with: "_")
+				
+				
+				// All values must be less <= 32000 bytes (but we only check Strings)
+				if let str = value as? String {
+					value = str.truncated(toLength: 32000)
+				}
+				
+				// Non-standard keys must be proceeded with an "_"
+				if useKey.hasPrefix("_") || (useKey == "full_message") {
+					dict[useKey] = value
+				}
+				else {
+					dict["_" + (useKey)] = value
 				}
 			}
 		}
@@ -358,7 +272,7 @@ fileprivate extension GraylogInput {
 		}
 		
 		if let json = json {
-			network.submitLog(accessPoint: self.accessPoint, payload: json) { (response,error) in
+			self.endpoint.submitLog(payload: json) { (response,error) in
 				if let error = error {
 					checkFailure("Failed to submit error log : \(error)")
 				}
