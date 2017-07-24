@@ -11,7 +11,7 @@ target 'graylogger_Example' do
 	pod 'graylogger/Alamofire', :path => '../'
 	pod 'graylogger/AnalyticsKit', :path => '../'
 	
-	pod 'AnalyticsKit/Core', :git => 'https://github.com/busybusy/AnalyticsKit.git'
+	pod 'AnalyticsKit/Core', '~> 1.3.0'
 
   target 'graylogger_Tests' do
     inherit! :search_paths
