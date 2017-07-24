@@ -22,11 +22,11 @@ public class AlamofireNetworkProvider: NetworkProvider {
 	
 	public func submitLog(endpoint: GraylogEndpoint, payload jsonData: Data, completion: ((Any?, Error?) -> Void)?) {
 		
-		if case GraylogEndpoint.udp(_, _, _) = endpoint {
+		if case GraylogEndpoint.udp(_, _) = endpoint {
 			requireFailure("Can not support UDP endpoint with URLSession")
 		}
 		
-		if self.networkIsReachable() {
+		if endpoint.isReachable() {
 			Alamofire.request(endpoint.request(withPayload: jsonData))
 			.response { response in
 				if let completion = completion {
@@ -61,7 +61,7 @@ public class AlamofireNetworkProvider: NetworkProvider {
 #if !os(watchOS)
 extension AlamofireNetworkProvider: ReachabilityProvider {
 
-	public func networkIsReachable() -> Bool {
+	public func networkIsReachable(endpoint:GraylogEndpoint) -> Bool {
 		// Must call reachabilityManager?.startListenings() to start the monitoring.
 		if (reachabilityManager?.networkReachabilityStatus == .unknown) {
 			reachabilityManager?.startListening()

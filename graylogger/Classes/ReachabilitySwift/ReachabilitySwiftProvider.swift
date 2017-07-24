@@ -15,7 +15,7 @@ public class ReachabilitySwiftProvider : ReachabilityProvider {
 		try? reach?.startNotifier()
 	}
 	
- 	public func networkIsReachable() -> Bool {
+	public func networkIsReachable(endpoint:GraylogEndpoint) -> Bool {
 		return reach?.isReachable ?? true
 	}
 }

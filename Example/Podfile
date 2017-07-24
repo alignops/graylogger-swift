@@ -10,6 +10,8 @@ target 'graylogger_Example' do
 	pod 'graylogger/AFNetworking', :path => '../'
 	pod 'graylogger/Alamofire', :path => '../'
 	pod 'graylogger/AnalyticsKit', :path => '../'
+	
+	pod 'AnalyticsKit/Core', :git => 'https://github.com/busybusy/AnalyticsKit.git'
 
   target 'graylogger_Tests' do
     inherit! :search_paths

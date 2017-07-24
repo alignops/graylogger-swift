@@ -22,7 +22,7 @@ class FailThanPassNetworkProvider: NetworkProvider {
 
 class CachedNetworkProviderTests: XCTestCase {
 	var networkCacheProvider:CachedNetworkProvider! = nil
-	let endpoiunt = GraylogEndpoint(logType: .http, host: "192.168.0.1", port: 1111, loglevel: .alert)
+	let endpoint = GraylogEndpoint(logType: .http, host: "192.168.0.1", port: 1111)
 	
     override func setUp() {
         super.setUp()
@@ -42,7 +42,7 @@ class CachedNetworkProviderTests: XCTestCase {
 
 		XCTAssertFalse(networkCacheProvider.cacheProvider.hasCache)
 
-		networkCacheProvider.submitLog(endpoint: endpoiunt, payload: json!) { (response, error) in
+		networkCacheProvider.submitLog(endpoint: endpoint, payload: json!) { (response, error) in
 			XCTAssert(error != nil)
 
 			// Should be a GraylogSessionError.cahedLogWithError

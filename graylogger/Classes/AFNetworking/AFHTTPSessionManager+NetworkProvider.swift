@@ -12,11 +12,11 @@ import DBC
 extension AFHTTPSessionManager: NetworkProvider {
 	public func submitLog(endpoint: GraylogEndpoint, payload jsonData: Data, completion: ((Any?, Error?) -> Void)?) {
 		
-		if case GraylogEndpoint.udp(_, _, _) = endpoint {
+		if case GraylogEndpoint.udp(_, _) = endpoint {
 			requireFailure("Can not support UDP endpoint with URLSession")
 		}
 		
-		if self.networkIsReachable() {
+		if endpoint.isReachable() {
 			let task = self.dataTask(with: endpoint.request(withPayload: jsonData), completionHandler: { (response:URLResponse, result:Any?, error:Error?) in
 				
 				if let completion = completion {
@@ -53,7 +53,7 @@ extension AFHTTPSessionManager: NetworkProvider {
 
 #if !os(watchOS)
 extension AFHTTPSessionManager: ReachabilityProvider {
-	public func networkIsReachable() -> Bool {
+	public func networkIsReachable(endpoint:GraylogEndpoint) -> Bool {
 		// Must call AFNetworkReachabilityManager.shared().startMonitoring() to start the monitoring.
 		if (AFNetworkReachabilityManager.shared().networkReachabilityStatus == .unknown) {
 			AFNetworkReachabilityManager.shared().startMonitoring()

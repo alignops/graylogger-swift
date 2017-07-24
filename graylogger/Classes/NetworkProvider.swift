@@ -24,15 +24,6 @@ public protocol NetworkProvider {
 /// See the `ReachabilitySwift`, `AFNetworking` and `Alamofire` implementations included in this framework.
 public protocol ReachabilityProvider {
 	/// Return true if the network is reachable, false otherwise.
-	func networkIsReachable() -> Bool
+	func networkIsReachable(endpoint: GraylogEndpoint) -> Bool
 }
 
-extension NetworkProvider {
-	public func networkIsReachable() -> Bool {
-		if let reachability = GraylogEndpoint.reachability {
-			return reachability.networkIsReachable()
-		}
-		
-		return true
-	}
-}

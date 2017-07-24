@@ -15,15 +15,15 @@ enum GraylogType: String {
 }
 
 extension GraylogEndpoint {
-	
-	init(logType:GraylogType, host:String, port:Int, loglevel: GraylogLevel) {
+
+	init(logType:GraylogType, host:String, port:Int) {
 		switch logType {
 		case .http:
-			self = .http(host: host, port: port, maxLogLevel: loglevel)
+			self = .http(host: host, port: port)
 		case .https:
-			self = .https(host: host, port: port, maxLogLevel: loglevel)
+			self = .https(host: host, port: port)
 		case .udp:
-			self = .udp(host: host, port: port, maxLogLevel: loglevel)
+			self = .udp(host: host, port: port)
 		}
 	}
 	

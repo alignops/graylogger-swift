@@ -15,29 +15,31 @@ import AnalyticsKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-	var bbTestLog:GraylogEndpoint = {
-		let log = GraylogEndpoint.http(host: "107.21.12.75", port: 12301, maxLogLevel: .informational)
-//		GraylogEndpoint.network = CachedNetworkProvider(cacheProvider: MemoryCacheProvider())
-//		GraylogEndpoint.network = CachedNetworkProvider(cacheProvider: CoreDataCacheProvider())
-//		GraylogEndpoint.network = AlamofireNetworkProvider()
-//		GraylogEndpoint.network = CachedNetworkProvider(cacheProvider: CoreDataCacheProvider(), networkProvider: AlamofireNetworkProvider())
-//		GraylogEndpoint.network = AFHTTPSessionManager()
-//		GraylogEndpoint.network = CachedNetworkProvider(cacheProvider: CoreDataCacheProvider(), networkProvider: AFHTTPSessionManager())
-//		GraylogEndpoint.reachability = ReachabilitySwiftProvider()
+	var bbTestLog:GraylogInput = {
+		let endpoint = GraylogEndpoint.http(host: "107.21.12.75", port: 12301)
+		let log = GraylogInput(endpoint: endpoint)
+		
+//		endpoint.network = CachedNetworkProvider(cacheProvider: MemoryCacheProvider())
+//		endpoint.network = CachedNetworkProvider(cacheProvider: CoreDataCacheProvider())
+//		endpoint.network = AlamofireNetworkProvider()
+//		endpoint.network = CachedNetworkProvider(cacheProvider: CoreDataCacheProvider(), networkProvider: AlamofireNetworkProvider())
+//		endpoint.network = AFHTTPSessionManager()
+//		endpoint.network = CachedNetworkProvider(cacheProvider: CoreDataCacheProvider(), networkProvider: AFHTTPSessionManager())
+//		endpoint.reachability = ReachabilitySwiftProvider()
 		
 		return log
 	}()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-		AnalyticsKit.initializeLoggers([GraylogAnalyticsKitProvider(endpoint:bbTestLog)])
+		AnalyticsKit.initializeProviders([GraylogAnalyticsKitProvider(input:bbTestLog)])
 		
         return true
     }
 	
 	var testData:[String:Any] {
 		return [
-				"NetworkProvider":"\(GraylogEndpoint.network.self)",
-				"ReachabilityProvider":"\(String(describing: GraylogEndpoint.reachability))",
+				"NetworkProvider":"\(bbTestLog.endpoint.network.self)",
+				"ReachabilityProvider":"\(String(describing: bbTestLog.endpoint.reachability))",
 				"Test Date": Date(),
 				"    Test Array    ": [1, 2, 3],
 				"Test Dictionary": ["one":1, "two":2, "three":3],

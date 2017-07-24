@@ -10,6 +10,18 @@ import SwiftyJSON
 import DBC
 
 public extension GraylogEndpoint {
+	/// Supplies a properly formatted gelf url to the graylog input.
+	var url: URL {
+		switch self {
+		case .http(let host, let port):
+			return URL(string: String(format: "http://%@:%d/gelf", host, port))!
+		case .https(let host, let port):
+			return URL(string: String(format: "https://%@:%d/gelf", host, port))!
+		case .udp(let host, let port):
+			return URL(string: String(format: "udp://%@:%d/gelf", host, port))!
+		}
+	}
+
 	/// Provides a default "POST" URLRequest for the endpoint. The provided payload is added as the `http body` of the request.
 	///
 	/// - Parameter jsonData: the payload serialized into a json data item.
