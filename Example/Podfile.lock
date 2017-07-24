@@ -7,7 +7,7 @@ PODS:
   - AFNetworking/Security (3.1.0)
   - AFNetworking/Serialization (3.1.0)
   - Alamofire (4.5.0)
-  - AnalyticsKit/Core (1.3.1)
+  - AnalyticsKit/Core (2.1.0)
   - DBC (1.0.2):
     - DBC/Bridged (= 1.0.2)
     - DBC/Objc (= 1.0.2)
@@ -17,29 +17,30 @@ PODS:
     - DBC/Swift
   - DBC/Objc (1.0.2)
   - DBC/Swift (1.0.2)
-  - graylogger (0.1.0):
-    - graylogger/Core (= 0.1.0)
-  - graylogger/AFNetworking (0.1.0):
+  - graylogger (0.2.0):
+    - graylogger/Core (= 0.2.0)
+  - graylogger/AFNetworking (0.2.0):
     - AFNetworking/NSURLSession
     - graylogger/Core
-  - graylogger/Alamofire (0.1.0):
+  - graylogger/Alamofire (0.2.0):
     - Alamofire
     - graylogger/Core
-  - graylogger/AnalyticsKit (0.1.0):
+  - graylogger/AnalyticsKit (0.2.0):
     - AnalyticsKit/Core
     - graylogger/Core
-  - graylogger/Core (0.1.0):
+  - graylogger/Core (0.2.0):
     - DBC
     - SwiftyJSON
-  - graylogger/CoreDataCache (0.1.0):
+  - graylogger/CoreDataCache (0.2.0):
     - graylogger/Core
-  - graylogger/ReachabilitySwift (0.1.0):
+  - graylogger/ReachabilitySwift (0.2.0):
     - graylogger/Core
     - ReachabilitySwift
   - ReachabilitySwift (3)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
+  - AnalyticsKit/Core (from `https://github.com/busybusy/AnalyticsKit.git`)
   - graylogger (from `../`)
   - graylogger/AFNetworking (from `../`)
   - graylogger/Alamofire (from `../`)
@@ -49,18 +50,25 @@ DEPENDENCIES:
   - SwiftyJSON
 
 EXTERNAL SOURCES:
+  AnalyticsKit:
+    :git: https://github.com/busybusy/AnalyticsKit.git
   graylogger:
     :path: "../"
+
+CHECKOUT OPTIONS:
+  AnalyticsKit:
+    :commit: 74937dd84187a229d412b044ca059c8011522257
+    :git: https://github.com/busybusy/AnalyticsKit.git
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
-  AnalyticsKit: 781660610a174241e74df977a06920308f2a9945
+  AnalyticsKit: f156ad2ba9b164d381cc7ce392a08066ab9475c8
   DBC: 710451ade7f92e86b626ba05190d09badd1b6a8d
-  graylogger: e686aef79e04bf3b1b187c05d69df1117deaea6b
+  graylogger: eb49b31eceb7f65cd8721bfdcc211c33d64350c3
   ReachabilitySwift: f5b9bb30a0777fac8f09ce8b067e32faeb29bb64
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 55ff2dd9b303ad19f6d3fde83974e37cd7d15f3d
+PODFILE CHECKSUM: 2b9207e430a082dfc1a253cdd09a83808a5f2734
 
 COCOAPODS: 1.2.0
