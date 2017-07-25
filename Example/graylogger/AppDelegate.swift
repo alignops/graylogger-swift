@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-		AnalyticsKit.initializeLoggers([GraylogAnalyticsKitProvider(input:bbTestLog)])
+		AnalyticsKit.initializeProviders([GraylogAnalyticsKitProvider(input:bbTestLog)])
 		
         return true
     }
