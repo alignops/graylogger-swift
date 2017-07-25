@@ -110,8 +110,6 @@ public class GraylogInput {
 		check(json != nil)
 		
 		self.endpoint.submitLog(payload: json!) { (response,error) in
-			check(error != nil, "Failed to submit error log : \(error!)")
-
 			// If we get a error not handled by the cache mechanism then attemt to log the specifics of the error in place of the log
 			if let error = error {
 				switch error {
