@@ -26,7 +26,7 @@ public class GraylogAnalyticsKitProvider: NSObject, AnalyticsKitProvider {
 		logEvent("Screen - \(screenName)")
 	}
 
-	public func logScreen(_ screenName: String, withProperties dict: [AnyHashable : Any]!) {
+	public func logScreen(_ screenName: String, withProperties dict: [String : Any]) {
 		logEvent("Screen - \(screenName)", withProperties: dict)
 	}
 
@@ -35,32 +35,32 @@ public class GraylogAnalyticsKitProvider: NSObject, AnalyticsKitProvider {
 		log(level:.informational, message:event)
 	}
 
-	public func logEvent(_ event: String!, withProperties dict: [AnyHashable : Any]!) {
+	public func logEvent(_ event: String, withProperties dict: [String : Any]) {
 		log(level:.informational, message:event, additionalData:dict)
 	}
 
-	public func logEvent(_ event: String!, withProperty key: String, andValue value: String) {
+	public func logEvent(_ event: String, withProperty key: String, andValue value: String) {
 		logEvent(event, withProperties: [key: value])
 	}
 
-	public func logEvent(_ event: String!, timed: Bool) {
+	public func logEvent(_ event: String, timed: Bool) {
 		if timed {
-			AnalyticsKitTimedEventHelper.startTimedEvent(withName: event, for: self)
+			AnalyticsKitTimedEventHelper.startTimedEventWithName(event, forProvider: self)
 		}
 
 		logEvent(event)
 	}
 
-	public func logEvent(_ event: String!, withProperties dict: [AnyHashable : Any]!, timed: Bool) {
+	public func logEvent(_ event: String, withProperties dict: [String : Any], timed: Bool) {
 		if timed {
-			AnalyticsKitTimedEventHelper.startTimedEvent(withName: event, properties: dict, for: self)
+			AnalyticsKitTimedEventHelper.startTimedEventWithName(event, properties: dict, forProvider: self)
 		}
 
 		logEvent(event, withProperties: dict)
 	}
 
-	public func endTimedEvent(_ event: String!, withProperties dict: [AnyHashable : Any]!) {
-		if let timedEvent = AnalyticsKitTimedEventHelper.endTimedEventNamed(event, for: self) {
+	public func endTimedEvent(_ event: String, withProperties dict: [String : Any]) {
+		if let timedEvent = AnalyticsKitTimedEventHelper.endTimedEventNamed(event, forProvider: self) {
 			logEvent(timedEvent.name, withProperties: timedEvent.properties)
 		}
 	}
@@ -104,10 +104,18 @@ public class GraylogAnalyticsKitProvider: NSObject, AnalyticsKitProvider {
 	public func uncaughtException(_ exception: NSException) {
 		logError("Uncaught Exception", message: "Crash on iOS \(UIDevice.current.systemVersion)", exception: exception)
 	}
+    
+    public func logError(_ name: String, message: String?, properties: [String : Any]?, exception: NSException?) {
+        log(level:.error, message:"Error - \(name)", longMessage:message)
+    }
+    
+    public func logError(_ name: String, message: String?, properties: [String : Any]?, error: Error?) {
+        log(level:.error, message:"Error - \(name)", longMessage:message)
+    }
 }
 
 fileprivate extension GraylogAnalyticsKitProvider {
-	func log(level:GraylogLevel, message:String, longMessage: String? = nil, additionalData:[AnyHashable : Any]? = nil, file: StaticString = #file, line: UInt = #line) {
-		glInput.log(level: level, message: message, longMessage:longMessage, additionalData: additionalData as! [String : Any], file:file, line:line)
+	func log(level:GraylogLevel, message:String, longMessage: String? = nil, additionalData:[String:Any]? = nil, file: StaticString = #file, line: UInt = #line) {
+		glInput.log(level: level, message: message, longMessage:longMessage, additionalData: additionalData, file:file, line:line)
 	}
 }
