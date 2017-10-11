@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import ReachabilitySwift
+import Reachability
 
 public class ReachabilitySwiftProvider : ReachabilityProvider {
 	let reach = Reachability()
