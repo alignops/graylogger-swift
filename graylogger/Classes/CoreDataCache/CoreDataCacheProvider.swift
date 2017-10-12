@@ -34,7 +34,17 @@ public class CoreDataCacheProvider:  CacheProvider {
 	}
 	
 	private lazy var cacheDirectory: URL = {
-		return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!.appendingPathComponent(self.dbBundle.bundleId)
+		
+		var caches = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
+		var cachePath: URL = URL(fileURLWithPath: caches.last!).appendingPathComponent(self.dbBundle.bundleId)
+		
+		if !FileManager.default.fileExists(atPath: cachePath.absoluteString) {
+			cachePath = URL(fileURLWithPath: caches.last!).appendingPathComponent("Snapshots").appendingPathComponent(self.dbBundle.bundleId)
+		}
+		
+		return  cachePath
+		
+//		return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!.appendingPathComponent(self.dbBundle.bundleId)
 	}()
 	
 	private lazy var managedObjectModel: NSManagedObjectModel = {
