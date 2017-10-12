@@ -4,6 +4,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
 target 'graylogger_Example' do
+	platform :ios, '9.0'
 	pod 'graylogger', :path => '../'
 	pod 'graylogger/CoreDataCache', :path => '../'
 	pod 'graylogger/ReachabilitySwift', :path => '../'
@@ -11,7 +12,7 @@ target 'graylogger_Example' do
 	pod 'graylogger/Alamofire', :path => '../'
 	pod 'graylogger/AnalyticsKit', :path => '../'
 	
-	pod 'AnalyticsKit/Core', :git => 'https://github.com/busybusy/AnalyticsKit.git'
+	pod 'AnalyticsKit/Core', :git => 'git@github.com:twobitlabs/AnalyticsKit.git'
 
   target 'graylogger_Tests' do
     inherit! :search_paths

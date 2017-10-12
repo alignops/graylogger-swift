@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import ReachabilitySwift
+import Reachability
 
 public class ReachabilitySwiftProvider : ReachabilityProvider {
 	let reach = Reachability()
@@ -16,7 +16,11 @@ public class ReachabilitySwiftProvider : ReachabilityProvider {
 	}
 	
 	public func networkIsReachable(endpoint:GraylogEndpoint) -> Bool {
-		return reach?.isReachable ?? true
+		if let reach = reach {
+			return reach.connection != .none
+		}
+		
+		return true
 	}
 }
 

@@ -203,7 +203,7 @@ fileprivate extension GraylogInput {
 						value = jsonStr
 					}
 					else {
-						checkFailure("Unable to serialize dictionary to JSON : \(key):\(value)")
+						inform("Unable to serialize dictionary to JSON : \(key):\(value)", debuggerBreak:true)
 						value = "Unable to serialize dictionary to JSON : \(key):\(value)"
 					}
 				}
@@ -214,7 +214,7 @@ fileprivate extension GraylogInput {
 						value = jsonStr
 					}
 					else {
-						checkFailure("Unable to serialize array to JSON  : \(key):\(value)")
+						inform("Unable to serialize array to JSON  : \(key):\(value)", debuggerBreak:true)
 						value = "Unable to serialize array to JSON  : \(key):\(value)"
 					}
 				}

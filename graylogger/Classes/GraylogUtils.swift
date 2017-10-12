@@ -6,8 +6,8 @@ import UIKit
 #endif
 
 
-class GraylogUtils {
-	class func hostname() -> String
+public class GraylogUtils {
+	public class func hostname() -> String
 	{
 		var name = UnsafeMutablePointer<Int8>.allocate(capacity: 256)
 		defer { name.deallocate(capacity: 256) }
@@ -27,7 +27,7 @@ extension String {
 			let uptoIndex = newLength - 1 - trailingText.characters.count
 			let index = self.index(self.startIndex, offsetBy:uptoIndex)
 			
-			return self.substring(to: index) + trailingText
+			return String(self[..<index]) + trailingText
 		} else {
 			return self
 		}
