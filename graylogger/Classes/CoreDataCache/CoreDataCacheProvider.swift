@@ -34,7 +34,15 @@ public class CoreDataCacheProvider:  CacheProvider {
 	}
 	
 	private lazy var cacheDirectory: URL = {
-		return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).last!.appendingPathComponent(self.dbBundle.bundleId)
+        if let cachesDirectory = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor:nil, create:false) {
+            var cachesDirectoryPath = cachesDirectory.appendingPathComponent(self.dbBundle.bundleId)
+            
+            if FileManager.default.fileExists(atPath: cachesDirectoryPath.absoluteString) {
+                cachesDirectoryPath = cachesDirectory.appendingPathComponent("Snapshots").appendingPathComponent(self.dbBundle.bundleId)
+            }
+            return cachesDirectoryPath
+        }
+        return URL(fileURLWithPath: "")
 	}()
 	
 	private lazy var managedObjectModel: NSManagedObjectModel = {
@@ -50,7 +58,7 @@ public class CoreDataCacheProvider:  CacheProvider {
 			_ = try psc.addPersistentStore(ofType: self.storeType.pscType, configurationName: nil, at: storeURL, options: nil)
 		}
 		catch {
-			requireFailure("[CoreDataCacheProvider] Error \(error)")
+            requireFailure("[CoreDataCacheProvider] Error \(error)")
 		}
 		
 		return psc
