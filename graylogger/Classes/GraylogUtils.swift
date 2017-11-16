@@ -20,11 +20,11 @@ class GraylogUtils {
 	}
 }
 
-extension String {
+internal extension String {
 	func truncated(toLength newLength: Int, trailing: String? = "…") -> String {
-		if self.characters.count > newLength {
+		if self.count > newLength {
 			let trailingText = trailing ?? ""
-			let uptoIndex = newLength - 1 - trailingText.characters.count
+			let uptoIndex = newLength - 1 - trailingText.count
 			let index = self.index(self.startIndex, offsetBy:uptoIndex)
 			
 			return self.substring(to: index) + trailingText
@@ -34,7 +34,7 @@ extension String {
 	}
 }
 
-extension Date {
+internal extension Date {
 	static var iso8601formatter: DateFormatter? = nil
 	
 	func formatDateAndTime() -> String {
@@ -54,8 +54,8 @@ extension Date {
 	}
 }
 
-extension Bundle {
-	public var appName: String {
+internal extension Bundle {
+	var appName: String {
 		var appName = self.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
 		
 		if appName == nil || appName!.isEmpty {
@@ -66,7 +66,7 @@ extension Bundle {
 		return appName ?? "UNKNOWN"
 	}
 	
-	public var appVersion: String {
+	var appVersion: String {
 		let versionNumber = self.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
 		check(versionNumber != nil && !versionNumber!.isEmpty)
 		
@@ -76,7 +76,7 @@ extension Bundle {
 		return "\(versionNumber ?? "UNKNOWN") (\(buildNumber ?? "UNKNOWN"))"
 	}
 	
-	public var bundleId: String {
+	var bundleId: String {
 		let bundleId = self.object(forInfoDictionaryKey: "CFBundleIdentifier") as? String
 		
 		ensure(bundleId != nil && !bundleId!.isEmpty)
@@ -85,9 +85,9 @@ extension Bundle {
 }
 
 #if os(iOS)
-public extension UIDevice {
+internal extension UIDevice {
 	
-	public var idStringForVendor: String? {
+	var idStringForVendor: String? {
 		return self.identifierForVendor?.uuidString
 	}
 }
