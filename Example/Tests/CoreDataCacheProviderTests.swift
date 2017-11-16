@@ -14,7 +14,8 @@ class CoreDataCacheProviderTests: XCTestCase {
     override func setUp() {
         super.setUp()
 		
-		let cacheProvider = CoreDataCacheProvider(storeType: .inMemory)
+		let bundleDoingTest = Bundle(for: type(of: self ))
+		let cacheProvider = CoreDataCacheProvider(storeType: .inMemory, bundle:bundleDoingTest)
 		
 		networkCacheProvider = CachedNetworkProvider(cacheProvider: cacheProvider, networkProvider: FailingNetworkProvider())
 		networkCacheProvider.cacheTimerDuration = 1000
@@ -40,6 +41,10 @@ class CoreDataCacheProviderTests: XCTestCase {
 		print("bundleMain = " + bundleMain.description) // Xcode Test Agent
 		print("bundleDoingTest = " + bundleDoingTest.description) // Test Case Bundle
 		print("bundleBeingTested = " + bundleBeingTested.description) // Framework Bundle
+		
+//		print("bundleMain.bundleId = " + bundleMain.bundleId) // Xcode Test Agent
+		print("bundleDoingTest.bundleId = " + bundleDoingTest.bundleId) // Test Case Bundle
+//		print("bundleBeingTested.bundleId = " + bundleBeingTested.bundleId) // Framework Bundle
 	}
 	
     func testCacheing() {

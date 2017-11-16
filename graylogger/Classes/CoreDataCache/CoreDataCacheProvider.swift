@@ -36,11 +36,17 @@ public class CoreDataCacheProvider:  CacheProvider {
 	private lazy var cacheDirectory: URL = {
         if let cachesDirectory = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor:nil, create:false) {
             var cachesDirectoryPath = cachesDirectory.appendingPathComponent(self.dbBundle.bundleId)
-            
-            if !FileManager.default.fileExists(atPath: cachesDirectoryPath.absoluteString) {
-                cachesDirectoryPath = cachesDirectory.appendingPathComponent("Snapshots").appendingPathComponent(self.dbBundle.bundleId)
-            }
-            return cachesDirectoryPath
+			var isDir : ObjCBool = false
+
+			if !FileManager.default.fileExists(atPath: cachesDirectoryPath.absoluteString, isDirectory: &isDir) {
+				do {
+					try FileManager.default.createDirectory(at: cachesDirectoryPath, withIntermediateDirectories: true, attributes: nil)
+				}
+				catch {
+					print("Error trying to create file path : \(error)")
+				}
+			}
+			return cachesDirectoryPath
         }
         return URL(fileURLWithPath: "")
 	}()
