@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'graylogger'
-  s.version          = '0.6.2'
+  s.version          = '0.6.3'
   s.summary          = 'A short description of graylogger.'
   s.homepage         = 'https://github.com/busybusy/graylogger-swift.git'
   s.license		     = 'Copyright 2016 Busy, LLC. All rights reserved.'
@@ -63,7 +63,7 @@ Pod::Spec.new do |s|
 	ss.source_files = 'graylogger/Classes/AnalyticsKit/*.swift'
 
     ss.dependency 'graylogger/Core'
-    ss.dependency 'AnalyticsKit/Core', '~> 1.3.0'
+    ss.dependency 'AnalyticsKit/Core', '~> 2.1.0'
   end
 end
 
