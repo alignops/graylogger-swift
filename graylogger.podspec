@@ -63,7 +63,7 @@ Pod::Spec.new do |s|
 	ss.source_files = 'graylogger/Classes/AnalyticsKit/*.swift'
 
     ss.dependency 'graylogger/Core'
-    ss.dependency 'AnalyticsKit/Core', '~> 1.3.0'
+    ss.dependency 'AnalyticsKit/Core', '~> 2.1.0'
   end
 end
 
