@@ -22,7 +22,7 @@ pod "graylogger"
 
 ## Author
 
-jjamminjm, jimb@cabosoft.com
+jjamminjm, jim@busybusy.com
 
 ## License
 

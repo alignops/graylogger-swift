@@ -17,23 +17,23 @@ PODS:
     - DBC/Swift
   - DBC/Objc (1.1.0)
   - DBC/Swift (1.1.0)
-  - graylogger (0.5.1):
-    - graylogger/Core (= 0.5.1)
-  - graylogger/AFNetworking (0.5.1):
+  - graylogger (0.6.6):
+    - graylogger/Core (= 0.6.6)
+  - graylogger/AFNetworking (0.6.6):
     - AFNetworking/NSURLSession
     - graylogger/Core
-  - graylogger/Alamofire (0.5.1):
+  - graylogger/Alamofire (0.6.6):
     - Alamofire
     - graylogger/Core
-  - graylogger/AnalyticsKit (0.5.1):
+  - graylogger/AnalyticsKit (0.6.6):
     - AnalyticsKit/Core (~> 2.1.0)
     - graylogger/Core
-  - graylogger/Core (0.5.1):
+  - graylogger/Core (0.6.6):
     - DBC
     - SwiftyJSON
-  - graylogger/CoreDataCache (0.5.1):
+  - graylogger/CoreDataCache (0.6.6):
     - graylogger/Core
-  - graylogger/ReachabilitySwift (0.5.1):
+  - graylogger/ReachabilitySwift (0.6.6):
     - graylogger/Core
     - ReachabilitySwift
   - ReachabilitySwift (4.1.0)
@@ -65,7 +65,7 @@ SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AnalyticsKit: ee9c86a6fa6d2a9eaccfda81e5deb38fd9f54590
   DBC: fb4eeedd9b9436b7afba706d897399a033dd4a7d
-  graylogger: 80eac36670e32c354f3a03cc50677b3aeae158ed
+  graylogger: c027735d7b5c73450442b62065f0a05faad9d8dd
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 

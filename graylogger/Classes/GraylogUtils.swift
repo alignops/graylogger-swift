@@ -18,6 +18,10 @@ public class GraylogUtils {
 		
 		return String(cString: name)
 	}
+	
+	public class func source() -> String {
+		return Bundle.main.bundleId
+	}
 }
 
 internal extension String {
