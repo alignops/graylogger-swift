@@ -89,7 +89,7 @@ public class GraylogInput {
 	///   - file: the file (with path if you want) that caused the error. Defaults to the current file path of the call.
 	///   - line: the line in a file that caused the error. Defaults to the current file line number of the call.
 	///
-	public func log(host:String = GraylogUtils.hostname(), level:GraylogLevel = .alert, message:String, longMessage:String? = nil, additionalData:[String:Any]? = nil, timeStamp:Date = Date(), file: StaticString = #file, line: UInt = #line) {
+	public func log(host:String = GraylogUtils.source(), level:GraylogLevel = .alert, message:String, longMessage:String? = nil, additionalData:[String:Any]? = nil, timeStamp:Date = Date(), file: StaticString = #file, line: UInt = #line) {
 		
 		// ignore messages that are not important enough to log
 		if (level > self.maxLogLevel) { return }

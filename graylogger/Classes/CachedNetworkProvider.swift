@@ -106,7 +106,7 @@ fileprivate extension CachedNetworkProvider {
 			
 			let queue = DispatchQueue.global(qos: .background)
 			idleTimer = DispatchSource.makeTimerSource(queue: queue)
-			idleTimer!.scheduleRepeating(deadline: .now() + .seconds(cacheTimerDuration), interval: .seconds(cacheTimerDuration))
+			idleTimer!.schedule(deadline: .now() + .seconds(cacheTimerDuration), repeating: .seconds(cacheTimerDuration))
 			idleTimer!.setEventHandler(handler: eventHandler)
 			idleTimer!.resume()
 		}

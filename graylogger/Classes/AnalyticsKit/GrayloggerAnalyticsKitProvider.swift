@@ -11,9 +11,11 @@ import DBC
 
 public class GraylogAnalyticsKitProvider: NSObject, AnalyticsKitProvider {
 	let glInput: GraylogInput
-	
-	public init(input: GraylogInput) {
+	let host: String
+
+	public init(input: GraylogInput, host: String = GraylogUtils.source()) {
 		self.glInput = input
+		self.host = host
 		super.init()
 	}
 	
@@ -108,6 +110,6 @@ public class GraylogAnalyticsKitProvider: NSObject, AnalyticsKitProvider {
 
 fileprivate extension GraylogAnalyticsKitProvider {
 	func log(level:GraylogLevel, message:String, longMessage: String? = nil, additionalData:[AnyHashable : Any]? = nil, file: StaticString = #file, line: UInt = #line) {
-		glInput.log(level: level, message: message, longMessage:longMessage, additionalData: additionalData as! [String : Any], file:file, line:line)
+		glInput.log(host:self.host, level: level, message: message, longMessage:longMessage, additionalData: additionalData as? [String : Any], file:file, line:line)
 	}
 }
