@@ -98,7 +98,7 @@ public class GraylogAnalyticsKitProvider: NSObject, AnalyticsKitProvider {
 		}
 	}
 
-	public func logError(_ name: String, message: String?, properties: [String : Any]?, error: Error?) {
+    public func logError(_ name: String, message: String?, properties: [String : Any]?, error: Error?) {
 		
 		var additionalData = [String: Any]()
 		additionalData["trace"] = Thread.callStackSymbols
@@ -116,6 +116,14 @@ public class GraylogAnalyticsKitProvider: NSObject, AnalyticsKitProvider {
 		else if let error = error {
 			additionalData["description"] = "\(error)"
 		}
+        
+        if let properties = properties, let userId = properties["userId"] {
+            additionalData["userId"] = userId
+        }
+        
+        if let properties = properties, let messageId = properties["messageId"] {
+            additionalData["messageId"] = messageId
+        }
 		
 		if (!additionalData.isEmpty) {
 			log(level:.error, message:"Error - \(name)", longMessage:message, additionalData: additionalData)
