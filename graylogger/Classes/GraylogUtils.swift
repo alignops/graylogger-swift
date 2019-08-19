@@ -10,10 +10,10 @@ public class GraylogUtils {
 	public class func hostname() -> String
 	{
 		var name = UnsafeMutablePointer<Int8>.allocate(capacity: 256)
-		defer { name.deallocate(capacity: 256) }
+		defer { name.deallocate() }
 		
 		if gethostname(name, 255) == -1 {
-			print("gethostname is attempting to return a hostname that is too long (\(errno)): \(strerror(errno))")
+			print("gethostname is attempting to return a hostname that is too long (\(errno)): \(String(describing: strerror(errno)))")
 		}
 		
 		return String(cString: name)
@@ -45,7 +45,7 @@ internal extension Date {
 		if nil == Date.iso8601formatter {
 			Date.iso8601formatter = DateFormatter()
 			Date.iso8601formatter?.dateFormat = NSLocalizedString("yyyy-MM-dd'T'HH:mm:ssZZZZZ", comment:"Date format: ISO 8601")
-			Date.iso8601formatter?.locale = NSLocale(localeIdentifier: NSLocale.preferredLanguages[0]) as Locale!
+			Date.iso8601formatter?.locale = NSLocale(localeIdentifier: NSLocale.preferredLanguages[0]) as Locale?
 		}
 		
 		if let result = Date.iso8601formatter?.string(from: self) {

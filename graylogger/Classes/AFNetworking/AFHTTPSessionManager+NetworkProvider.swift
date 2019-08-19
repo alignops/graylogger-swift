@@ -10,6 +10,7 @@ import AFNetworking
 import DBC
 
 extension AFHTTPSessionManager: NetworkProvider {
+	
 	public func submitLog(endpoint: GraylogEndpoint, payload jsonData: Data, completion: ((Any?, Error?) -> Void)?) {
 		
 		if case GraylogEndpoint.udp(_, _) = endpoint {
