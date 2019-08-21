@@ -18,21 +18,21 @@ public enum BusyAKChannel: String {
 
 public extension AnalyticsKit {
 	
-	public class var debug: AnalyticsKitChannel {
+	class var debug: AnalyticsKitChannel {
 		return channel(BusyAKChannel.debug.rawValue)
 	}
 	
-	public class var userEvent: AnalyticsKitChannel {
+	class var userEvent: AnalyticsKitChannel {
 		return channel(BusyAKChannel.userEvent.rawValue)
 	}
 	
-	public class func initializeProviders() {
+	class func initializeProviders() {
 		debug.initializeProviders([GraylogAnalyticsKitProvider(input: grayLogDebugLogger)])
 		userEvent.initializeProviders([GraylogAnalyticsKitProvider(input: grayLogUserEventLogger)])
 	}
 	
 	@inline(__always)
-	public class func channel(_ busyChannel: BusyAKChannel) -> AnalyticsKitChannel {
+	class func channel(_ busyChannel: BusyAKChannel) -> AnalyticsKitChannel {
 		return self.channel(busyChannel.rawValue)
 	}
 }
@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		AnalyticsKit.initializeProviders()
 		
         return true

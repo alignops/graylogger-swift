@@ -42,7 +42,7 @@ public extension GraylogEndpoint  {
 	/// Note there is one setting per enum case (i.e .http, .https, .enum each jave only one settable value regardless of associated values)
 	///
 	/// See Also: `CachedNetworkProvider.swift` for details of a builtin log caching mechanism provided with the framwework.
-	public var network: NetworkProvider {
+	var network: NetworkProvider {
 		get {
 			return self.networkProvider ?? URLSession.shared
 		}
@@ -51,7 +51,7 @@ public extension GraylogEndpoint  {
 		}
 	}
 
-	public func submitLog(payload jsonData: Data, completion: ((Any?, Error?) -> Void)?) {
+	func submitLog(payload jsonData: Data, completion: ((Any?, Error?) -> Void)?) {
 		self.network.submitLog(endpoint:self, payload:jsonData, completion:completion)
 	}
 }
@@ -62,7 +62,7 @@ public extension GraylogEndpoint {
 	/// Note there is one setting per enum case (i.e .http, .https, .enum each jave only one settable value regardless of associated values)
 	/// Note that if the associated `NetworkProvider` also implements `ReachabilityProvider` this property will automatically be
 	/// assinged through the `network` property above. See the ReachabilitySwift provider included with this framework.
-	public var reachability: ReachabilityProvider? {
+	var reachability: ReachabilityProvider? {
 		get {
 			return self.reachabilityProvider
 		}
@@ -71,7 +71,7 @@ public extension GraylogEndpoint {
 		}
 	}
 
-	public func isReachable() -> Bool {
+	func isReachable() -> Bool {
 		if let reachability = self.reachability {
 			return reachability.networkIsReachable(endpoint:self)
 		}
@@ -141,13 +141,14 @@ extension GraylogEndpoint: Hashable {
 		}
 	}
 
-	public var hashValue: Int {
+	public func hash(into hasher: inout Hasher) {
 		switch self {
-		case .http: return 1
-		case .https: return 2
-		case .udp: return 3
+		case .http: hasher.combine(1)
+		case .https: hasher.combine(2)
+		case .udp:  hasher.combine(3)
 		}
 	}
+
 	
 	public static func ==(lhs: GraylogEndpoint, rhs: GraylogEndpoint) -> Bool {
 		return lhs.hashValue == rhs.hashValue

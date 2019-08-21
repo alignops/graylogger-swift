@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'graylogger'
-  s.version          = '0.6.7'
+  s.version          = '0.7.0'
   s.summary          = 'A short description of graylogger.'
   s.homepage         = 'https://github.com/busybusy/graylogger-swift.git'
   s.license		     = 'Copyright 2016 Busy, LLC. All rights reserved.'
@@ -8,16 +8,17 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/busybusy/graylogger-swift.git', :tag => s.version.to_s }
   s.default_subspec  = 'Core'
 
-  s.ios.deployment_target = '9.0'
-  s.watchos.deployment_target = '2.0'
-  s.osx.deployment_target = '10.10'
-  s.tvos.deployment_target = '9.2'
+  s.ios.deployment_target = '10.0'
+  s.watchos.deployment_target = '3.0'
+  s.osx.deployment_target = '10.11'
+  s.tvos.deployment_target = '10.0'
+  s.swift_version = '5.0'
 
   s.subspec 'Core' do |ss|
     ss.source_files = 'graylogger/Classes/*.swift'
   
 	ss.frameworks = 'Foundation'
-	ss.ios.frameworks = 'UIKit'
+	ss.ios.frameworks = 'UIKit'
 	ss.watchos.frameworks = 'UIKit'
 	ss.tvos.frameworks = 'UIKit'
 
@@ -34,9 +35,9 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'ReachabilitySwift' do |ss|
-	ss.ios.deployment_target = '9.0'
-	ss.osx.deployment_target = '10.10'
-	ss.tvos.deployment_target = '9.2'
+	s.ios.deployment_target = '10.0'
+	s.osx.deployment_target = '10.11'
+	s.tvos.deployment_target = '10.0'
     ss.source_files = 'graylogger/Classes/ReachabilitySwift/*.swift'
 
     ss.dependency 'graylogger/Core'
@@ -58,7 +59,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'AnalyticsKit' do |ss|
-	ss.ios.deployment_target = '9.0'
+	ss.ios.deployment_target = '10.0'
 
 	ss.source_files = 'graylogger/Classes/AnalyticsKit/*.swift'
 
