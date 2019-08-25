@@ -1,46 +1,46 @@
 PODS:
-  - AFNetworking/NSURLSession (3.1.0):
+  - AFNetworking/NSURLSession (3.2.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.1.0)
-  - AFNetworking/Security (3.1.0)
-  - AFNetworking/Serialization (3.1.0)
-  - Alamofire (4.5.1)
-  - AnalyticsKit/Core (2.1.1)
-  - DBC (1.1.0):
-    - DBC/Bridged (= 1.1.0)
-    - DBC/Objc (= 1.1.0)
-    - DBC/Swift (= 1.1.0)
-  - DBC/Bridged (1.1.0):
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - Alamofire (4.8.2)
+  - AnalyticsKit/Core (2.1.2)
+  - DBC (1.3.0):
+    - DBC/Bridged (= 1.3.0)
+    - DBC/Objc (= 1.3.0)
+    - DBC/Swift (= 1.3.0)
+  - DBC/Bridged (1.3.0):
     - DBC/Objc
     - DBC/Swift
-  - DBC/Objc (1.1.0)
-  - DBC/Swift (1.1.0)
-  - graylogger (0.6.6):
-    - graylogger/Core (= 0.6.6)
-  - graylogger/AFNetworking (0.6.6):
+  - DBC/Objc (1.3.0)
+  - DBC/Swift (1.3.0)
+  - graylogger (0.7.0):
+    - graylogger/Core (= 0.7.0)
+  - graylogger/AFNetworking (0.7.0):
     - AFNetworking/NSURLSession
     - graylogger/Core
-  - graylogger/Alamofire (0.6.6):
+  - graylogger/Alamofire (0.7.0):
     - Alamofire
     - graylogger/Core
-  - graylogger/AnalyticsKit (0.6.6):
+  - graylogger/AnalyticsKit (0.7.0):
     - AnalyticsKit/Core (~> 2.1.0)
     - graylogger/Core
-  - graylogger/Core (0.6.6):
+  - graylogger/Core (0.7.0):
     - DBC
     - SwiftyJSON
-  - graylogger/CoreDataCache (0.6.6):
+  - graylogger/CoreDataCache (0.7.0):
     - graylogger/Core
-  - graylogger/ReachabilitySwift (0.6.6):
+  - graylogger/ReachabilitySwift (0.7.0):
     - graylogger/Core
     - ReachabilitySwift
-  - ReachabilitySwift (4.1.0)
-  - SwiftyJSON (3.1.4)
+  - ReachabilitySwift (4.3.1)
+  - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
-  - AnalyticsKit/Core (from `git@github.com:twobitlabs/AnalyticsKit.git`)
+  - "AnalyticsKit/Core (from `git@github.com:twobitlabs/AnalyticsKit.git`)"
   - graylogger (from `../`)
   - graylogger/AFNetworking (from `../`)
   - graylogger/Alamofire (from `../`)
@@ -49,26 +49,35 @@ DEPENDENCIES:
   - graylogger/ReachabilitySwift (from `../`)
   - SwiftyJSON
 
+SPEC REPOS:
+  "git@bitbucket.org:cabosoft-mobile/cabopods-ios.git":
+    - DBC
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - Alamofire
+    - ReachabilitySwift
+    - SwiftyJSON
+
 EXTERNAL SOURCES:
   AnalyticsKit:
-    :git: git@github.com:twobitlabs/AnalyticsKit.git
+    :git: "git@github.com:twobitlabs/AnalyticsKit.git"
   graylogger:
-    :path: ../
+    :path: "../"
 
 CHECKOUT OPTIONS:
   AnalyticsKit:
-    :commit: d2ed4e03245f48caa0871f0a53cc533cf9d7cc10
-    :git: git@github.com:twobitlabs/AnalyticsKit.git
+    :commit: 21fae7cf298fd301efd6e98e73353df2f83e8162
+    :git: "git@github.com:twobitlabs/AnalyticsKit.git"
 
 SPEC CHECKSUMS:
-  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  AnalyticsKit: ee9c86a6fa6d2a9eaccfda81e5deb38fd9f54590
-  DBC: fb4eeedd9b9436b7afba706d897399a033dd4a7d
-  graylogger: c027735d7b5c73450442b62065f0a05faad9d8dd
-  ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
-  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  AnalyticsKit: af522ba171660376191c01de5ab37611562b329d
+  DBC: cda87d484bd2d619bd4212e5b79b6a5b30dff036
+  graylogger: 2d07c57782e0b8de3cbc62f397037da3820447b9
+  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 9690dfa8cd47cce3d594d7da3dafc3e9648c7dbe
+PODFILE CHECKSUM: 81b8277740d9e7281ef45b4f55508c0fd2170ec3
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.7.5
