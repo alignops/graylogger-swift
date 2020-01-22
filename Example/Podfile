@@ -1,4 +1,4 @@
-source 'git@bitbucket.org:cabosoft-mobile/cabopods-ios.git'
+source 'https://github.com/busybusy/busypods-ios.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
 use_frameworks!
