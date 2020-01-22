@@ -26,7 +26,7 @@ public extension GraylogEndpoint {
 	///
 	/// - Parameter jsonData: the payload serialized into a json data item.
 	func request(withPayload jsonData: Data) -> URLRequest{
-		var request = URLRequest(url: self.url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 60.0)
+		var request = URLRequest(url: self.url, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60.0)
 		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 		request.addValue("application/json", forHTTPHeaderField: "Accept")
 		request.httpMethod = "POST"
