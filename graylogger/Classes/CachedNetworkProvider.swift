@@ -53,7 +53,7 @@ public class CachedNetworkProvider: NetworkProvider {
 		self.stopTimer()
 	}
 	
-	public func submitLog(endpoint: GraylogEndpoint, payload jsonData: Data, completion: ((Any?, Error?) -> Void)?) {
+    public func submitLog(endpoint: GraylogEndpoint, payload jsonData: Data, completion: ((_ response: Any?, _ error:Error?) -> Void)?) {
 		passThrough.submitLog(endpoint: endpoint, payload: jsonData) {(response, error) in
 			var submitErr:Error? = nil
 			

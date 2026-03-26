@@ -1,4 +1,4 @@
-source 'https://github.com/busybusy/busypods-ios.git'
+source 'https://github.com/alignops/busypods-ios.git'
 source 'https://github.com/CocoaPods/Specs.git'
 
 use_frameworks!
@@ -8,6 +8,7 @@ target 'graylogger_Example' do
 	pod 'graylogger', :path => '../'
 	pod 'graylogger/CoreDataCache', :path => '../'
 	pod 'graylogger/ReachabilitySwift', :path => '../'
+    pod 'AFNetworking/NSURLSession', :git => 'git@github.com:alignops/AFNetworking.git'
 	pod 'graylogger/AFNetworking', :path => '../'
 	pod 'graylogger/Alamofire', :path => '../'
 	pod 'graylogger/AnalyticsKit', :path => '../'
@@ -22,3 +23,13 @@ target 'graylogger_Example' do
   
 end
 
+post_install do |installer|
+	installer.pods_project.targets.each do |target| 
+		target.build_configurations.each do |config|
+			config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '10.0'
+		end
+	end
+	installer.pods_project.build_configurations.each do |config|
+		config.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
+	end
+end

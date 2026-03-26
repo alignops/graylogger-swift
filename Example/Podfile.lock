@@ -1,11 +1,11 @@
 PODS:
-  - AFNetworking/NSURLSession (3.2.1):
+  - AFNetworking/NSURLSession (4.0.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (3.2.1)
-  - AFNetworking/Security (3.2.1)
-  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
   - Alamofire (4.8.2)
   - AnalyticsKit/Core (2.1.2)
   - DBC (1.2.0):
@@ -17,29 +17,30 @@ PODS:
     - DBC/Swift
   - DBC/Objc (1.2.0)
   - DBC/Swift (1.2.0)
-  - graylogger (0.7.0):
-    - graylogger/Core (= 0.7.0)
-  - graylogger/AFNetworking (0.7.0):
+  - graylogger (0.8.0):
+    - graylogger/Core (= 0.8.0)
+  - graylogger/AFNetworking (0.8.0):
     - AFNetworking/NSURLSession
     - graylogger/Core
-  - graylogger/Alamofire (0.7.0):
-    - Alamofire
+  - graylogger/Alamofire (0.8.0):
+    - Alamofire (~> 4.8.2)
     - graylogger/Core
-  - graylogger/AnalyticsKit (0.7.0):
+  - graylogger/AnalyticsKit (0.8.0):
     - AnalyticsKit/Core (~> 2.1.0)
     - graylogger/Core
-  - graylogger/Core (0.7.0):
+  - graylogger/Core (0.8.0):
     - DBC
     - SwiftyJSON
-  - graylogger/CoreDataCache (0.7.0):
+  - graylogger/CoreDataCache (0.8.0):
     - graylogger/Core
-  - graylogger/ReachabilitySwift (0.7.0):
+  - graylogger/ReachabilitySwift (0.8.0):
     - graylogger/Core
     - ReachabilitySwift
-  - ReachabilitySwift (4.3.1)
+  - ReachabilitySwift (5.0.0)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
+  - "AFNetworking/NSURLSession (from `git@github.com:alignops/AFNetworking.git`)"
   - "AnalyticsKit/Core (from `git@github.com:twobitlabs/AnalyticsKit.git`)"
   - graylogger (from `../`)
   - graylogger/AFNetworking (from `../`)
@@ -50,34 +51,38 @@ DEPENDENCIES:
   - SwiftyJSON
 
 SPEC REPOS:
-  https://github.com/busybusy/busypods-ios.git:
+  https://github.com/alignops/busypods-ios.git:
     - DBC
   https://github.com/CocoaPods/Specs.git:
-    - AFNetworking
     - Alamofire
     - ReachabilitySwift
     - SwiftyJSON
 
 EXTERNAL SOURCES:
+  AFNetworking:
+    :git: "git@github.com:alignops/AFNetworking.git"
   AnalyticsKit:
     :git: "git@github.com:twobitlabs/AnalyticsKit.git"
   graylogger:
     :path: "../"
 
 CHECKOUT OPTIONS:
+  AFNetworking:
+    :commit: c8b9554c57b96390b7a452fae348cc5540950e2e
+    :git: "git@github.com:alignops/AFNetworking.git"
   AnalyticsKit:
     :commit: 21fae7cf298fd301efd6e98e73353df2f83e8162
     :git: "git@github.com:twobitlabs/AnalyticsKit.git"
 
 SPEC CHECKSUMS:
-  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   AnalyticsKit: af522ba171660376191c01de5ab37611562b329d
   DBC: 7ee77ff6dd123d809d6f273631329aa76eaabe8d
-  graylogger: 2d07c57782e0b8de3cbc62f397037da3820447b9
-  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
+  graylogger: eca4f05b01e77c83c641c7c95477f256596b569d
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 10542e4c56e326088e9767f2f5a315da94782850
+PODFILE CHECKSUM: ecdc1679b8599aa075c41e87cfd71bf4e7f207d8
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.16.2

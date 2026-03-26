@@ -18,7 +18,7 @@ extension AFHTTPSessionManager: NetworkProvider {
 		}
 		
 		if endpoint.isReachable() {
-			let task = self.dataTask(with: endpoint.request(withPayload: jsonData), completionHandler: { (response:URLResponse, result:Any?, error:Error?) in
+            let task = self.dataTask(with: endpoint.request(withPayload: jsonData), uploadProgress: nil, downloadProgress: nil, completionHandler: { (response:URLResponse, result:Any?, error:Error?) in
 				
 				if let completion = completion {
 					var completeErr:Error? = nil
